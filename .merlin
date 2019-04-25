@@ -1,0 +1,29 @@
+####{BSB GENERATED: NO EDIT
+B lib/bs
+FLG -open ReCalc
+FLG -ppx /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion-ppx/ppx
+FLG -ppx '/Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/reactjs_jsx_ppx_3.exe'
+FLG -ppx /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/bsppx.exe
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -color always
+FLG -w -30-40+6+7+27+32..39+44+45+101
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/reason-react/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/reason-react/lib/ocaml
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/@glennsl/bs-jest/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/@glennsl/bs-jest/lib/ocaml
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-jest-dom/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-jest-dom/lib/ocaml
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-react-testing-library/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-react-testing-library/lib/ocaml
+S /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion/lib/ocaml
+B /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion/lib/ocaml
+S __tests__
+B lib/bs/__tests__
+S src
+B lib/bs/src
+S src/components
+B lib/bs/src/components
+S src/component
+B lib/bs/src/component
+####BSB GENERATED: NO EDIT}

@@ -1,0 +1,32 @@
+{
+  "name": "re-calc",
+  "namespace": true,
+  "version": "0.0.1",
+  "reason": {
+    "react-jsx": 3
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+    "reason-react", 
+    "@glennsl/bs-jest", 
+    "bs-jest-dom",
+    "bs-react-testing-library",
+    "bs-emotion"
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
+  "refmt": 3,
+  "ppx-flags": ["bs-emotion-ppx/ppx"]
+}

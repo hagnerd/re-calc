@@ -1,0 +1,1 @@
+{ "dirs" : [ "__tests__" , "src" , "src/node_modules" , "src/node_modules/.lsp" , "src/components" , "src/components/node_modules" , "src/components/node_modules/.lsp" , "src/component" ] , "generated" : [] }

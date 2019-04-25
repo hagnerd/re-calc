@@ -1,0 +1,153 @@
+ppx_checked_files = /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion-ppx/ppx
+bs_package_flags = -bs-package-name re-calc -bs-package-map ReCalc
+src_root_dir = /Users/matthagner/code/learning/reason/re-calc
+bsc = /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/bsc.exe
+bsdep = /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/bsb_helper.exe
+warnings = -w -30-40+6+7+27+32..39+44+45+101
+bsc_flags = -bs-suffix -nostdlib -I '/Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/ocaml' -color always
+ppx_flags = -ppx '/Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion-ppx/ppx'
+bs_package_includes = -I /Users/matthagner/code/learning/reason/re-calc/node_modules/reason-react/lib/ocaml -I /Users/matthagner/code/learning/reason/re-calc/node_modules/@glennsl/bs-jest/lib/ocaml -I /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-jest-dom/lib/ocaml -I /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-react-testing-library/lib/ocaml -I /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-emotion/lib/ocaml
+bs_package_dev_includes = 
+namespace = -ns ReCalc
+bsb_dir_group = 0
+bsc_group_1_includes = -I __tests__
+refmt = /Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/refmt.exe
+reason_react_jsx = -ppx '/Users/matthagner/code/learning/reason/re-calc/node_modules/bs-platform/lib/reactjs_jsx_ppx_3.exe'
+refmt_flags = --print binary
+bsc_lib_includes = -I . -I src/component -I src/components/node_modules/.lsp -I src/components/node_modules -I src/components -I src/node_modules/.lsp -I src/node_modules -I src
+rule build_ast_and_module_sets_from_re
+  command = ${bsc} -pp "${refmt} ${refmt_flags}" ${reason_react_jsx}  ${ppx_flags} ${warnings} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast -impl ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build __tests__/Utils_test.mlast : build_ast_and_module_sets_from_re $src_root_dir/__tests__/Utils_test.re |  ${ppx_checked_files}
+rule build_deps
+  command = ${bsdep} ${namespace} -g ${bsb_dir_group} -MD ${in}
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build __tests__/Utils_test.mlast.d : build_deps __tests__/Utils_test.mlast |  ${ppx_checked_files}
+  bsb_dir_group = 1
+rule build_cmj_cmi
+  command = ${bsc} ${bs_package_flags} -bs-assume-no-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${warnings} ${bsc_flags} ${gentypeconfig} -o ${out} -c  ${in} $postbuild
+  depfile = ${in}.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build __tests__/Utils_test-ReCalc.cmj |  $src_root_dir/__tests__/Utils_test.bs.js __tests__/Utils_test-ReCalc.cmi : build_cmj_cmi __tests__/Utils_test.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:__tests__
+  bs_package_includes = $bs_package_includes $bs_package_dev_includes
+  bsc_extra_includes = $bsc_group_1_includes
+build __tests__/Button_test.mlast : build_ast_and_module_sets_from_re $src_root_dir/__tests__/Button_test.re |  ${ppx_checked_files}
+build __tests__/Button_test.mlast.d : build_deps __tests__/Button_test.mlast |  ${ppx_checked_files}
+  bsb_dir_group = 1
+build __tests__/Button_test-ReCalc.cmj |  $src_root_dir/__tests__/Button_test.bs.js __tests__/Button_test-ReCalc.cmi : build_cmj_cmi __tests__/Button_test.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:__tests__
+  bs_package_includes = $bs_package_includes $bs_package_dev_includes
+  bsc_extra_includes = $bsc_group_1_includes
+build __tests__/CalcMath_test.mlast : build_ast_and_module_sets_from_re $src_root_dir/__tests__/CalcMath_test.re |  ${ppx_checked_files}
+build __tests__/CalcMath_test.mlast.d : build_deps __tests__/CalcMath_test.mlast |  ${ppx_checked_files}
+  bsb_dir_group = 1
+build __tests__/CalcMath_test-ReCalc.cmj |  $src_root_dir/__tests__/CalcMath_test.bs.js __tests__/CalcMath_test-ReCalc.cmi : build_cmj_cmi __tests__/CalcMath_test.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:__tests__
+  bs_package_includes = $bs_package_includes $bs_package_dev_includes
+  bsc_extra_includes = $bsc_group_1_includes
+build __tests__/CalcParse_test.mlast : build_ast_and_module_sets_from_re $src_root_dir/__tests__/CalcParse_test.re |  ${ppx_checked_files}
+build __tests__/CalcParse_test.mlast.d : build_deps __tests__/CalcParse_test.mlast |  ${ppx_checked_files}
+  bsb_dir_group = 1
+build __tests__/CalcParse_test-ReCalc.cmj |  $src_root_dir/__tests__/CalcParse_test.bs.js __tests__/CalcParse_test-ReCalc.cmi : build_cmj_cmi __tests__/CalcParse_test.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:__tests__
+  bs_package_includes = $bs_package_includes $bs_package_dev_includes
+  bsc_extra_includes = $bsc_group_1_includes
+build __tests__/CalcRegex_test.mlast : build_ast_and_module_sets_from_re $src_root_dir/__tests__/CalcRegex_test.re |  ${ppx_checked_files}
+build __tests__/CalcRegex_test.mlast.d : build_deps __tests__/CalcRegex_test.mlast |  ${ppx_checked_files}
+  bsb_dir_group = 1
+build __tests__/CalcRegex_test-ReCalc.cmj |  $src_root_dir/__tests__/CalcRegex_test.bs.js __tests__/CalcRegex_test-ReCalc.cmi : build_cmj_cmi __tests__/CalcRegex_test.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:__tests__
+  bs_package_includes = $bs_package_includes $bs_package_dev_includes
+  bsc_extra_includes = $bsc_group_1_includes
+build src/main.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/main.re |  ${ppx_checked_files}
+build src/main.mlast.d : build_deps src/main.mlast |  ${ppx_checked_files}
+build src/main-ReCalc.cmj |  $src_root_dir/src/main.bs.js src/main-ReCalc.cmi : build_cmj_cmi src/main.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/Utils.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/Utils.re |  ${ppx_checked_files}
+build src/Utils.mlast.d : build_deps src/Utils.mlast |  ${ppx_checked_files}
+build src/Utils-ReCalc.cmj |  $src_root_dir/src/Utils.bs.js src/Utils-ReCalc.cmi : build_cmj_cmi src/Utils.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+rule build_ast_and_module_sets_from_rei
+  command = ${bsc} -pp "${refmt} ${refmt_flags}" ${reason_react_jsx} ${ppx_flags} ${warnings} ${bsc_flags}  -c -o ${out} -bs-syntax-only -bs-binary-ast -intf ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build src/CalcMath.mliast : build_ast_and_module_sets_from_rei $src_root_dir/src/CalcMath.rei |  ${ppx_checked_files}
+build src/CalcMath.mliast.d : build_deps src/CalcMath.mliast |  ${ppx_checked_files}
+rule build_cmi
+  command = ${bsc} ${bs_package_flags} -bs-no-builtin-ppx-mli -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${warnings} ${bsc_flags} ${gentypeconfig} -o ${out} -c  ${in}
+  depfile = ${in}.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/CalcMath-ReCalc.cmi : build_cmi src/CalcMath.mliast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/CalcMath.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/CalcMath.re |  ${ppx_checked_files}
+build src/CalcMath.mlast.d : build_deps src/CalcMath.mlast |  ${ppx_checked_files}
+rule build_cmj_only
+  command = ${bsc} ${bs_package_flags} -bs-assume-has-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include  ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${warnings} ${bsc_flags} ${gentypeconfig} -o ${out} -c  ${in} $postbuild
+  depfile = ${in}.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/CalcMath-ReCalc.cmj |  $src_root_dir/src/CalcMath.bs.js : build_cmj_only src/CalcMath.mlast |  src/CalcMath-ReCalc.cmi
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/CalcParse.mliast : build_ast_and_module_sets_from_rei $src_root_dir/src/CalcParse.rei |  ${ppx_checked_files}
+build src/CalcParse.mliast.d : build_deps src/CalcParse.mliast |  ${ppx_checked_files}
+build src/CalcParse-ReCalc.cmi : build_cmi src/CalcParse.mliast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/CalcParse.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/CalcParse.re |  ${ppx_checked_files}
+build src/CalcParse.mlast.d : build_deps src/CalcParse.mlast |  ${ppx_checked_files}
+build src/CalcParse-ReCalc.cmj |  $src_root_dir/src/CalcParse.bs.js : build_cmj_only src/CalcParse.mlast |  src/CalcParse-ReCalc.cmi
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/CalcRegex.mliast : build_ast_and_module_sets_from_rei $src_root_dir/src/CalcRegex.rei |  ${ppx_checked_files}
+build src/CalcRegex.mliast.d : build_deps src/CalcRegex.mliast |  ${ppx_checked_files}
+build src/CalcRegex-ReCalc.cmi : build_cmi src/CalcRegex.mliast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/CalcRegex.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/CalcRegex.re |  ${ppx_checked_files}
+build src/CalcRegex.mlast.d : build_deps src/CalcRegex.mlast |  ${ppx_checked_files}
+build src/CalcRegex-ReCalc.cmj |  $src_root_dir/src/CalcRegex.bs.js : build_cmj_only src/CalcRegex.mlast |  src/CalcRegex-ReCalc.cmi
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/components/Button.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/components/Button.re |  ${ppx_checked_files}
+build src/components/Button.mlast.d : build_deps src/components/Button.mlast |  ${ppx_checked_files}
+build src/components/Button-ReCalc.cmj |  $src_root_dir/src/components/Button.bs.js src/components/Button-ReCalc.cmi : build_cmj_cmi src/components/Button.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src/components
+build src/components/Display.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/components/Display.re |  ${ppx_checked_files}
+build src/components/Display.mlast.d : build_deps src/components/Display.mlast |  ${ppx_checked_files}
+build src/components/Display-ReCalc.cmj |  $src_root_dir/src/components/Display.bs.js src/components/Display-ReCalc.cmi : build_cmj_cmi src/components/Display.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src/components
+build src/components/NumButtons.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/components/NumButtons.re |  ${ppx_checked_files}
+build src/components/NumButtons.mlast.d : build_deps src/components/NumButtons.mlast |  ${ppx_checked_files}
+build src/components/NumButtons-ReCalc.cmj |  $src_root_dir/src/components/NumButtons.bs.js src/components/NumButtons-ReCalc.cmi : build_cmj_cmi src/components/NumButtons.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src/components
+build src/components/OperatorButtons.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/components/OperatorButtons.re |  ${ppx_checked_files}
+build src/components/OperatorButtons.mlast.d : build_deps src/components/OperatorButtons.mlast |  ${ppx_checked_files}
+build src/components/OperatorButtons-ReCalc.cmj |  $src_root_dir/src/components/OperatorButtons.bs.js src/components/OperatorButtons-ReCalc.cmi : build_cmj_cmi src/components/OperatorButtons.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src/components
+build src/component/DisplayError.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/component/DisplayError.re |  ${ppx_checked_files}
+build src/component/DisplayError.mlast.d : build_deps src/component/DisplayError.mlast |  ${ppx_checked_files}
+build src/component/DisplayError-ReCalc.cmj |  $src_root_dir/src/component/DisplayError.bs.js src/component/DisplayError-ReCalc.cmi : build_cmj_cmi src/component/DisplayError.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src/component
+rule build_package
+  command = ${bsc} -w -49 -no-alias-deps -bs-cmi-only -c ${in}
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build ReCalc.cmi : build_package ReCalc.mlmap
+build build.ninja : phony  ||  ReCalc.cmi src/component/DisplayError.mlast.d src/components/OperatorButtons.mlast.d src/components/NumButtons.mlast.d src/components/Display.mlast.d src/components/Button.mlast.d src/CalcRegex.mlast.d src/CalcRegex.mliast.d src/CalcParse.mlast.d src/CalcParse.mliast.d src/CalcMath.mlast.d src/CalcMath.mliast.d src/Utils.mlast.d src/main.mlast.d __tests__/CalcRegex_test.mlast.d __tests__/CalcParse_test.mlast.d __tests__/CalcMath_test.mlast.d __tests__/Button_test.mlast.d __tests__/Utils_test.mlast.d
